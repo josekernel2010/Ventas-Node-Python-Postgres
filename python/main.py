@@ -16,7 +16,7 @@ def iniciar():
         opcion = input("Ingrese una opcion: ")
         os.system("cls")
         if opcion == "1":
-            # registrar()
+            nuevo_producto()
             pass
         elif opcion == "2":
             # consultar()
@@ -38,6 +38,16 @@ def iniciar():
             print("===============")
             input("Presione una tecla para continuar...")
             os.system("cls")
+
+
+def nuevo_producto():
+    nombre = input("Ingrese el nombre del producto: ")
+    descripcion = input("Ingrese la descripcion del producto: ")
+    precio = input("Ingrese el precio del producto: ")
+    datos = {"nombre": nombre, "descripcion": descripcion, "precio": precio}
+    respuesta = requests.post(
+        url="http://localhost:3000/producto/registro", data=datos)
+    print(respuesta.text)
 
 
 iniciar()
