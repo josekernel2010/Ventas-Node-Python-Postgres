@@ -19,7 +19,7 @@ def iniciar():
             nuevo_producto()
             pass
         elif opcion == "2":
-            # consultar()
+            consultar()
             pass
         elif opcion == "3":
             # buscar()
@@ -44,10 +44,27 @@ def nuevo_producto():
     nombre = input("Ingrese el nombre del producto: ")
     descripcion = input("Ingrese la descripcion del producto: ")
     precio = input("Ingrese el precio del producto: ")
+    # lista donde asignamos los valore obtenidos desde los input
     datos = {"nombre": nombre, "descripcion": descripcion, "precio": precio}
+    # request post ingresa los datos dede python hasta la base de datos por medio de la ruta
     respuesta = requests.post(
         url="http://localhost:3000/producto/registro", data=datos)
     print(respuesta.text)
 
 
-iniciar()
+def consultar():
+
+    respuesta = requests.get(url='http://localhost:3000/producto/todos')
+    datos = []
+    for dato in respuesta.json():
+        temp = []
+        for key, value in dato.items():
+            temp.append(value)
+        datos.append(temp)
+    headers = ['ID', 'NOMBRE', 'DESCRIPCIÓN', 'PRECIO']
+    pass
+
+
+if __name__ == "__main__":
+
+    iniciar()
