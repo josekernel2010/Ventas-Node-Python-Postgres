@@ -1,5 +1,6 @@
 // módulo "pg" y clase Pool para generar las conecciones a la base de datos
 const Pool = require("pg").Pool;
+require("dotenv").config();
 
 // instancia de pool con las caracteristicas de la coneccion
 const pool = new Pool({
