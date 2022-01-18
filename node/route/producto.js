@@ -4,14 +4,14 @@ const express = require("express");
 // le asignamos el .Router
 const router = express.Router();
 // aquí ponemos la ruta del controlador
-const productoContrller = require("../controller/producto");
+const productoController = require("../controller/producto");
 
 //Rutas de producto
-router.get("/todos", productoContrller.todos);
-router.get("/buscar/:id", productoContrller.buscar);
-router.post("/registro", productoContrller.registro);
-router.post("/modificacion/:id", productoContrller.modificacion);
-router.post("/eliminar/:id", productoContrller.eliminar);
+router.get("/todos", productoController.todos);
+router.get("/buscar/:id", productoController.buscar);
+router.post("/registro", productoController.registro);
+router.post("/modificar/:id", productoController.modificar);
+router.post("/eliminar/:id", productoController.eliminar);
 
 // exportamos router
 module.exports = router;
