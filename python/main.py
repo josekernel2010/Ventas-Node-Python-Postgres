@@ -79,17 +79,25 @@ def nuevo_producto():
     nombre = input("Ingrese el nombre del producto: ")
     descripcion = input("Ingrese la descripcion del producto: ")
     precio = input("Ingrese el precio del producto: ")
-    # lista donde asignamos los valore obtenidos desde los input
-    datos = {"nombre": nombre, "descripcion": descripcion, "precio": precio}
-    # request post ingresa los datos dede python hasta la base de datos por medio de la ruta
-    respuesta = requests.post(
-        url="http://localhost:3000/producto/registro", data=datos)
 
-    print(len(respuesta.text)*"=")
-    print(respuesta.text)
-    print(len(respuesta.text)*"=")
-    input("Presione una tecla para continuar...")
-    os.system("cls")
+    if not precio.isdigit():
+        print("Valor invalido...")
+        input("Presione una tecla para continuar...")
+        os.system("cls")
+
+    else:
+
+        # lista donde asignamos los valore obtenidos desde los input
+        datos = {"nombre": nombre, "descripcion": descripcion, "precio": precio}
+        # request post ingresa los datos dede python hasta la base de datos por medio de la ruta
+        respuesta = requests.post(
+            url="http://localhost:3000/producto/registro", data=datos)
+
+        print(len(respuesta.text)*"=")
+        print(respuesta.text)
+        print(len(respuesta.text)*"=")
+        input("Presione una tecla para continuar...")
+        os.system("cls")
 
 
 # 2. Consultar todos los productos
@@ -155,6 +163,7 @@ def modifiicar():
                 os.system("cls")
                 tabla = tabulate(buscar.json(), tablefmt="fancy_grid")
                 print(tabla)
+
                 campo = input(
                     "\n\t1. Nombre\n\t2. Descripcion\n\t3. Precio\n\t4. Salir\n\tIngrese una opcion: ")
 
